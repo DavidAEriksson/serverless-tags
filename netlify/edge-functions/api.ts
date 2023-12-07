@@ -6,8 +6,8 @@ export default async (request: Request, context: Context) => {
   const body = request.body;
   console.log("################# BODY: ", body);
   if (request.method === "POST") {
-    const blob_data = await request.blob();
-    console.log("################# JSON_DATA: ", blob_data);
+    const text = await request.text();
+    console.log("################# JSON_DATA: ", text);
   }
   console.log("################# CONTEXT: ", context);
   return new Response("Hello, World!", {

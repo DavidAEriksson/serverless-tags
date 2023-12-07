@@ -6,7 +6,3 @@
   from = "/api/*"
   status = 200
   to = "/.netlify/functions/api/:splat"
-[build]
-  command = "npm run build"
-  functions = "functions"
-  publish = "dist"

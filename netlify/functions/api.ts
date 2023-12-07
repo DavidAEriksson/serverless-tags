@@ -1,17 +1,5 @@
-import express, { Router } from "express";
-import serverless from "serverless-http";
+import type { Context } from "@netlify/functions";
 
-const port = process.env.PORT || 3000;
-const api = express();
-
-const router = Router();
-router.get("/hello", (req, res) => res.send("Hello World!"));
-router.post("/hello", (req, res) => console.log(req.body));
-
-api.use("/api/", router);
-
-export const handler = serverless(api);
-
-api.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+export default async (req: Request, context: Context) => {
+  return new Response("Hello, world!");
+};

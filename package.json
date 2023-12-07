@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node netlify/functions/api.ts",
-    "build": "tsc",
-    "serve": "node dist/index.js"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +18,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@netlify/edge-functions": "^2.2.0",
     "@netlify/functions": "^2.4.0",
     "serverless-http": "^3.2.0"
   }

@@ -1,6 +1,7 @@
 import type { Config, Context } from "@netlify/edge-functions";
 
 export default async (request: Request, context: Context) => {
+  console.log("################# METHOD", request.method);
   console.log("################# REQUEST:", request);
   const body = request.body;
   console.log("################# BODY: ", body);

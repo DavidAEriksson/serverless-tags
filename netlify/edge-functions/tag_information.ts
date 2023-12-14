@@ -22,10 +22,16 @@ export default async (request: Request, context: Context) => {
   });
   const bcRes = await client.query(getAllTagLogsQueryObject());
   return new Response(JSON.stringify(bcRes), {
-    headers: { "content-type": "text/json" },
+    headers: {
+      "content-type": "text/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
   });
 };
 
 export const config: Config = {
   path: "/tag-data",
+  method: "GET",
 };

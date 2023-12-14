@@ -18,22 +18,15 @@ export default async (request: Request, context: Context) => {
   const client = await createClient({
     nodeUrlPool: "https://node0.devnet1.chromia.dev:7740",
     blockchainRid:
-      "081D30836EACF3B355EF405A2C772BBE13F348EDF0E4E7F4DA0E2864B1EE5FDB",
+      "440BAAD2850394E97FAB9DAF32267086E3EDDCBF0A9C00694FD7D45BF76ADDDB",
   });
   if (request.method === "POST") {
     const data: WilliotSenseEvent = await request.json();
     if (data.eventName === "active" && data.value.trim() === "1") {
-      const tx = {
-        operations: [
-          {
-            name: "tag.create_tag_presence_log",
-            args: [data.assetId, data.categoryId, ""],
-          },
-        ],
-        signers: [],
-      };
-      client.addNop(tx);
-      const txRes = await client.sendTransaction(tx);
+      const txRes = await client.sendTransaction({
+        name: "tag.create_tag_presence_log",
+        args: [data.assetId, data.categoryId, data.timestamp],
+      });
       console.log(txRes);
     }
   }

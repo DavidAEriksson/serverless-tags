@@ -22,6 +22,7 @@ export default async (request: Request, context: Context) => {
   });
   if (request.method === "POST") {
     const data: WilliotSenseEvent = await request.json();
+    console.log("LINE: 24 | data: ", data);
     if (data.eventName === "active" && data.value.trim() === "1") {
       const txRes = await client.sendTransaction({
         name: "tag.create_tag_presence_log",

@@ -18,7 +18,7 @@ export default async (request: Request, context: Context) => {
   const client = await createClient({
     nodeUrlPool: "https://node0.devnet1.chromia.dev:7740",
     blockchainRid:
-      "440BAAD2850394E97FAB9DAF32267086E3EDDCBF0A9C00694FD7D45BF76ADDDB",
+      "273DC754C1259C8ECF2B146969AB37372172D4F1FC3D763DE94DA0FF50591412",
   });
   if (request.method === "POST") {
     const data: WilliotSenseEvent = await request.json();

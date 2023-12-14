@@ -20,22 +20,12 @@ export default async (request: Request, context: Context) => {
     blockchainRid:
       "273DC754C1259C8ECF2B146969AB37372172D4F1FC3D763DE94DA0FF50591412",
   });
-  if (request.method === "POST") {
-    const data: WilliotSenseEvent = await request.json();
-    console.log("WilliotSenseEvent: ", data);
-    if (data.eventName === "active" && data.value.trim() === "1") {
-      const txRes = await client.sendTransaction({
-        name: "tag.create_tag_presence_log",
-        args: [data.assetId, data.categoryId, data.timestamp],
-      });
-      console.log(txRes);
-    }
-  }
-  return new Response("Only POST here please :)", {
+  const bcRes = await client.query(getAllTagLogsQueryObject());
+  return new Response(JSON.stringify(bcRes), {
     headers: { "content-type": "text/json" },
   });
 };
 
 export const config: Config = {
-  path: "/",
+  path: "/tag-data",
 };

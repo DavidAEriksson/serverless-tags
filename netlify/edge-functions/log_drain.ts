@@ -22,7 +22,12 @@ export default async (request: Request, context: Context) => {
       "273DC754C1259C8ECF2B146969AB37372172D4F1FC3D763DE94DA0FF50591412",
   });
   const bcRes = await client.query(getAllLogDumpsQueryObject());
-  return new Response(JSON.stringify(bcRes), {
+  const formattedRes = bcRes.map((item) => ({
+    ...item,
+    time: new Date(item.time).toLocaleString(),
+  }));
+
+  return new Response(JSON.stringify(formattedRes), {
     headers: {
       "content-type": "text/json",
       "Access-Control-Allow-Origin": "*",
